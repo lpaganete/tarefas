@@ -2,16 +2,26 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function App() {
+  const [peso, setPeso] = useState(''); // quero que meu cimput comece com uma string vazia 
+  const [altura, setAltura] = useState('');
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Calcule seu IMC</Text>
 
       <TextInput
         style={styles.input}
-        value={}
-        onChangeText={} //serve para que cada vez que digitar uma tecla, ele vai salvar em uma 
+        value={peso}
+        onChangeText={(peso) => setPeso(peso)} //Usa estado (useState) cada vez que digitar uma tecla, ele vai salvar na variavel "peso". 
         placeholder="Peso (kg)"
-
+        keyboardType="numeric" //define o tipo de reclado
+      />
+      <TextInput
+        style={styles.input}
+        value={altura}
+        onChangeText={(altura) => setAltura(altura)}
+        placeholder="Altura (cm)"
+        keyboardType="numeric" //define o tipo de reclado
       />
     </View>
   );
