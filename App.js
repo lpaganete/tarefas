@@ -5,6 +5,21 @@ export default function App() {
   const [peso, setPeso] = useState(''); // quero que meu cimput comece com uma string vazia 
   const [altura, setAltura] = useState('');
 
+  function handleSubmit() {
+    const alt = altura / 100;
+    const imc = peso / (alt * alt);
+
+    if (imc <= 18.6) {
+      alert("Você está abaixo do peso! " + imc.toFixed(2)); //toFixed limita o número de casas dps da vírgula
+    }
+    else if (imc > 18.6 && imc <= 24.9) {
+      alert("Parabéns! Você está no peso ideal! " + imc.toFixed(2));
+    }
+    else if (imc > 24.9 && imc <= 34.9) {
+      alert("Você está levemente acima do peso! " + imc.toFixed(2));
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Calcule seu IMC</Text>
@@ -23,7 +38,10 @@ export default function App() {
         placeholder="Altura (cm)"
         keyboardType="numeric" //define o tipo de reclado
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSubmit} //Quando clicar no botão vai chamar alguma coisa (uma função)
+      >
         <Text style={styles.buttonText}>Calcular</Text>
       </TouchableOpacity>
     </View>
